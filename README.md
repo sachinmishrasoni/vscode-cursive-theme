@@ -6,6 +6,12 @@ This repository is intended to make the VS Code editor appearance easy to reprod
 
 ---
 
+## Preview
+
+![VS Code Cursive Font Setup Demo](assets/vscode-cursive-font-demo.png)
+
+---
+
 ## Overview
 
 This repository provides a workspace-level VS Code configuration that includes:
