@@ -3,17 +3,28 @@
     "editor.fontSize": 16,
     "editor.fontWeight": "400",
     "editor.fontLigatures": true,
-
     // Makes comments and function parameters italic
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
                 "scope": [
                     "comment",
+                    "entity.attribute.name",
+                    "entity.other.attribute-name",
+                    "entity.other.attribute-name.class",
+                    "entity.other.attribute-name.id",
+                    "entity.name.type.class",
+                    "keyword",
+                    "constant",
+                    "storage.modifier",
+                    "storage.type",
+                    "storage.type.function",
+                    "storage.type.class",
+                    "storage.type.class.js",
                     "variable.parameter"
                 ],
                 "settings": {
-                    "fontStyle": "italic"
+                    "fontStyle": "italic bold"
                 }
             },
             {
@@ -31,6 +42,7 @@
             }
         ]
     },
-
-    "workbench.colorTheme": "GitHub Dark Dimmed"
+    "workbench.colorTheme": "GitHub Dark Dimmed",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.productIconTheme": "fluent-icons",
 }

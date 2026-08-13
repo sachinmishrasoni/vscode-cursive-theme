@@ -1,57 +1,118 @@
 # VS Code Cursive Font Setup
 
-A reusable and developer-friendly **Visual Studio Code configuration** for using the **Victor Mono** programming font with italic/cursive comments, italic function parameters, font ligatures, and the GitHub Dark Dimmed theme.
+A reusable and developer-friendly **Visual Studio Code configuration** for creating a clean and modern coding environment using **Victor Mono**, italic/cursive syntax styling, font ligatures, GitHub Dark Dimmed, Material Icon Theme, and Fluent Icons.
 
-This repository is intended to make the VS Code editor appearance easy to reproduce on a **new computer, fresh OS installation, or another developer's system** without manually configuring every setting again.
-
----
-
-## Preview
-
-![VS Code Cursive Font Setup Demo](assets/vscode-cursive-font-demo.png)
+This repository is designed to make the same VS Code appearance easy to reproduce on a **new computer, fresh OS installation, or another developer's system** without manually configuring everything again.
 
 ---
 
 ## Overview
 
-This repository provides a workspace-level VS Code configuration that includes:
+This repository provides a reusable VS Code workspace configuration with:
 
 * **Victor Mono** as the primary coding font
-* Italic/cursive styling for comments
-* Italic styling for function and method parameters
+* Italic and bold styling for selected syntax elements
+* Italic/cursive comments
+* Italic function and method parameters
+* Italic keywords
+* Italic constants
+* Italic class names and related syntax
 * Font ligatures
-* Regular font weight for normal code
-* GitHub Dark Dimmed editor theme
-* Fallback fonts when Victor Mono is unavailable
-* Workspace-specific VS Code settings
-* Setup documentation for new developers
+* Regular font weight for the editor
+* **GitHub Dark Dimmed** color theme
+* **Material Icon Theme** for file and folder icons
+* **Fluent Icons** for VS Code product icons
+* Workspace-level VS Code settings
+* Documentation for setting up the environment on another computer
 
-The repository does **not** contain the Victor Mono font files. The font must be installed separately on each computer.
+The repository contains the **VS Code configuration**, not the Victor Mono font files.
 
 ---
 
-## Features
+# Preview
 
-### Victor Mono
+The setup is intended to produce a VS Code appearance similar to the demo below:
 
-The configuration uses **Victor Mono** as the primary editor font.
+![VS Code Cursive Font Setup Demo](assets/vscode-cursive-font-demo.png)
 
-Fallback fonts are also configured:
+The demo shows:
+
+* Victor Mono font
+* Italic/cursive comments
+* Italic function parameters
+* Normal operators and numbers
+* Font ligatures
+* GitHub Dark Dimmed
+* The overall configured VS Code appearance
+
+---
+
+# Features
+
+## 1. Victor Mono Font
+
+The primary editor font is:
 
 ```text
 Victor Mono
+```
+
+Fallback fonts are configured as:
+
+```text
 Consolas
 Courier New
 monospace
 ```
 
-If Victor Mono is installed, VS Code will use it. If it is not available, VS Code will use the next available fallback font.
+The configuration is:
+
+```json
+"editor.fontFamily": "'Victor Mono', Consolas, 'Courier New', monospace"
+```
+
+If Victor Mono is installed, VS Code will use it.
+
+If Victor Mono is unavailable, VS Code will use the next available fallback font.
 
 ---
 
-### Cursive / Italic Comments
+## 2. Italic and Bold Syntax Styling
 
-Comments are displayed using the italic variant of Victor Mono.
+Selected syntax scopes are configured with:
+
+```json
+"fontStyle": "italic bold"
+```
+
+This provides the cursive/italic appearance for selected parts of the code while keeping the overall editor readable.
+
+The configuration applies to scopes such as:
+
+```text
+comment
+entity.attribute.name
+entity.other.attribute-name
+entity.other.attribute-name.class
+entity.other.attribute-name.id
+entity.name.type.class
+keyword
+constant
+storage.modifier
+storage.type
+storage.type.function
+storage.type.class
+storage.type.class.js
+variable.parameter
+```
+
+This allows different code elements to use Victor Mono's italic style.
+
+---
+
+## 3. Cursive / Italic Comments
+
+Comments are included in the italic styling.
 
 Example:
 
@@ -61,13 +122,13 @@ Example:
 const user = await fetchUser();
 ```
 
-The comment will appear in the italic/cursive style while the actual code remains in the regular style.
+The comment will use the italic variant of Victor Mono.
 
 ---
 
-### Italic Function Parameters
+## 4. Italic Function Parameters
 
-Function and method parameters are configured to use italic styling.
+Function and method parameters are included in the italic styling.
 
 Example:
 
@@ -77,148 +138,298 @@ function getUser(userId) {
 }
 ```
 
-The `userId` parameter will use the italic variant of Victor Mono.
+The `userId` parameter is styled using the italic font variant.
 
 ---
 
-### Font Ligatures
+## 5. Italic Keywords
 
-Font ligatures are enabled:
+Keywords are included in the styling rules:
+
+```text
+keyword
+```
+
+Examples include syntax such as:
+
+```javascript
+import
+export
+return
+if
+else
+async
+await
+```
+
+The final appearance depends on how the selected language's syntax grammar maps each token.
+
+---
+
+## 6. Italic Constants
+
+The configuration also includes:
+
+```text
+constant
+```
+
+This can affect tokens such as constants, strings, numbers, booleans, and other language-specific constant scopes depending on the language grammar.
+
+---
+
+## 7. Class and Attribute Styling
+
+The configuration also includes:
+
+```text
+entity.attribute.name
+entity.other.attribute-name
+entity.other.attribute-name.class
+entity.other.attribute-name.id
+entity.name.type.class
+```
+
+This allows class names and certain attribute-related syntax elements to inherit the italic/bold appearance.
+
+---
+
+## 8. Storage and Type Styling
+
+The following scopes are included:
+
+```text
+storage.modifier
+storage.type
+storage.type.function
+storage.type.class
+storage.type.class.js
+```
+
+These can affect syntax such as:
+
+```javascript
+static
+class
+function
+```
+
+and language-specific storage/type declarations.
+
+---
+
+## 9. Font Ligatures
+
+Font ligatures are enabled with:
 
 ```json
 "editor.fontLigatures": true
 ```
 
-This allows Victor Mono to render supported programming characters using its ligature design.
+Victor Mono supports programming ligatures for supported character combinations.
 
 For example:
 
 ```text
-=>  !=  ===  >=  <=
+=>  !=  !==  ===  >=  <=
 ```
 
-Ligature rendering depends on the selected font and programming language.
+This can make code visually cleaner and easier to scan.
+
+The exact rendering depends on the language and the font.
 
 ---
 
-### GitHub Dark Dimmed Theme
+# VS Code Appearance
 
-The workspace uses:
+The configuration uses three visual settings:
 
-```text
-GitHub Dark Dimmed
+```json
+"workbench.colorTheme": "GitHub Dark Dimmed",
+"workbench.iconTheme": "material-icon-theme",
+"workbench.productIconTheme": "fluent-icons"
 ```
 
-This provides a dark editor appearance that works well with the Victor Mono font and italic syntax styling.
+These control different parts of the VS Code interface.
+
+| Setting                      | Purpose                         |
+| ---------------------------- | ------------------------------- |
+| `workbench.colorTheme`       | Main editor and UI color theme  |
+| `workbench.iconTheme`        | File and folder icons           |
+| `workbench.productIconTheme` | VS Code interface/product icons |
 
 ---
 
-# Repository Structure
+# Required VS Code Extensions
+
+Install the following extensions to reproduce the complete appearance.
+
+## 1. GitHub Theme
+
+**Extension:** GitHub Theme
+
+**Publisher:** GitHub
+
+**Extension ID:**
 
 ```text
-vscode-cursive-font/
-│
-├── .vscode/
-│   └── settings.json
-│
-├── README.md
-│
-└── .gitignore
+GitHub.github-vscode-theme
 ```
 
-### `.vscode/settings.json`
+The GitHub Theme extension provides GitHub's color themes, including **GitHub Dark Dimmed**.
 
-Contains the workspace-level VS Code configuration.
+Marketplace:
 
-### `README.md`
+https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme
 
-Contains installation instructions, configuration details, troubleshooting steps, and usage information.
+Install it from the VS Code Extensions panel by searching:
 
-### `.gitignore`
+```text
+GitHub Theme
+```
 
-Prevents temporary files, operating-system files, logs, and other unnecessary files from being committed.
+---
+
+## 2. Material Icon Theme
+
+**Extension:** Material Icon Theme
+
+**Publisher:** Philipp Kief
+
+**Extension ID:**
+
+```text
+PKief.material-icon-theme
+```
+
+Material Icon Theme provides file and folder icons for Visual Studio Code.
+
+Marketplace:
+
+https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme
+
+Install it from the VS Code Extensions panel by searching:
+
+```text
+Material Icon Theme
+```
+
+After installation, the following setting enables it:
+
+```json
+"workbench.iconTheme": "material-icon-theme"
+```
+
+---
+
+## 3. Fluent Icons
+
+**Extension:** Fluent Icons
+
+**Publisher:** Miguel Solorio
+
+**Extension ID:**
+
+```text
+miguelsolorio.fluent-icons
+```
+
+Fluent Icons provides Fluent-style product icons for Visual Studio Code.
+
+Marketplace:
+
+https://marketplace.visualstudio.com/items?itemName=miguelsolorio.fluent-icons
+
+Install it from the VS Code Extensions panel by searching:
+
+```text
+Fluent Icons
+```
+
+After installation, the following setting enables it:
+
+```json
+"workbench.productIconTheme": "fluent-icons"
+```
+
+---
+
+# Required Font
+
+## Victor Mono
+
+Victor Mono is a programming font with an italic style that gives the cursive appearance used by this configuration.
+
+### Official Website
+
+https://rubjo.github.io/victor-mono/
+
+Download and install the font before opening VS Code.
 
 ---
 
 # Prerequisites
 
-Before using this configuration, make sure the following are installed:
+Before using this setup, make sure the following are installed:
 
 1. Visual Studio Code
 2. Git
-3. Victor Mono font
+3. Victor Mono
+4. GitHub Theme extension
+5. Material Icon Theme extension
+6. Fluent Icons extension
 
 ---
 
-# 1. Install Visual Studio Code
+# Installation Guide
 
-Install the latest stable version of Visual Studio Code on your computer.
+## Step 1 — Install Visual Studio Code
 
-After installation, verify that VS Code opens correctly.
+Install the latest stable version of Visual Studio Code.
 
-You can check the installed version from the terminal:
+You can verify the installation with:
 
 ```bash
 code --version
 ```
 
-If the `code` command is not available, you can still open the repository manually from VS Code.
+If the `code` command is not available, you can open VS Code normally and use **File → Open Folder**.
 
 ---
 
-# 2. Install Git
+## Step 2 — Install Git
 
-Git is required to clone this repository.
+Install Git if it is not already installed.
 
-Verify the installation:
+Verify it with:
 
 ```bash
 git --version
 ```
 
-If Git is installed correctly, the command will display the installed Git version.
+---
+
+## Step 3 — Download Victor Mono
+
+Open the official Victor Mono website:
+
+https://rubjo.github.io/victor-mono/
+
+Download the font package.
 
 ---
 
-# 3. Download and Install Victor Mono
+## Step 4 — Install Victor Mono on Windows
 
-Victor Mono is required for the intended cursive/italic coding appearance.
+1. Extract the downloaded ZIP file.
+2. Open the extracted folder.
+3. Select the Victor Mono font files.
+4. Right-click the files.
+5. Select **Install** or **Install for all users**.
+6. Wait until the font installation is complete.
+7. Restart VS Code.
 
-### Official Victor Mono Website
-
-Download Victor Mono from the official website:
-
-**https://rubjo.github.io/victor-mono/**
-
-The font is **not included in this repository**.
-
-Each developer must install Victor Mono separately on their computer.
-
----
-
-## Windows Installation
-
-1. Open the official Victor Mono website:
-
-   https://rubjo.github.io/victor-mono/
-
-2. Download the Victor Mono font package.
-
-3. Extract the downloaded ZIP file.
-
-4. Open the extracted folder.
-
-5. Select the required font files.
-
-6. Right-click the selected font files.
-
-7. Select **Install** or **Install for all users**.
-
-8. Wait for the installation to complete.
-
-9. Restart Visual Studio Code.
-
-After installation, the system should have access to:
+After installation, your system should recognize:
 
 ```text
 Victor Mono
@@ -226,27 +437,55 @@ Victor Mono
 
 ### Important
 
-Do not add the Victor Mono `.ttf` or `.otf` font files to this GitHub repository.
+Do not commit Victor Mono font files to this repository.
 
-The repository contains the VS Code configuration only.
+The repository stores the configuration only.
 
 ---
 
-# 4. Clone the Repository
+# Step 5 — Install the VS Code Extensions
 
-Open a terminal and clone the repository:
+Open Visual Studio Code.
+
+Press:
+
+```text
+Ctrl + Shift + X
+```
+
+This opens the Extensions panel.
+
+Install the following:
+
+### GitHub Theme
+
+```text
+GitHub Theme
+```
+
+### Material Icon Theme
+
+```text
+Material Icon Theme
+```
+
+### Fluent Icons
+
+```text
+Fluent Icons
+```
+
+These extensions provide the themes and icon sets referenced by the repository configuration.
+
+---
+
+# Step 6 — Clone the Repository
+
+Open a terminal:
 
 ```bash
 git clone <YOUR_GITHUB_REPOSITORY_URL>
 ```
-
-Replace:
-
-```text
-<YOUR_GITHUB_REPOSITORY_URL>
-```
-
-with the actual GitHub repository URL.
 
 Example:
 
@@ -254,7 +493,7 @@ Example:
 git clone https://github.com/YOUR_USERNAME/vscode-cursive-font.git
 ```
 
-Move into the project directory:
+Move into the repository:
 
 ```bash
 cd vscode-cursive-font
@@ -262,100 +501,77 @@ cd vscode-cursive-font
 
 ---
 
-# 5. Open the Repository in VS Code
+# Step 7 — Open the Repository in VS Code
 
-If the VS Code `code` command is available, run:
+Run:
 
 ```bash
 code .
 ```
 
-Alternatively:
+Or open VS Code manually:
 
 1. Open Visual Studio Code.
 2. Select **File → Open Folder**.
-3. Select the cloned `vscode-cursive-font` folder.
-4. Open the project.
+3. Select the cloned repository.
+4. Open the folder.
 
-Once the repository is opened, VS Code will detect:
-
-```text
-.vscode/settings.json
-```
-
-and apply the workspace settings.
-
----
-
-# 6. VS Code Configuration
-
-The main configuration file is:
+VS Code will detect:
 
 ```text
 .vscode/settings.json
 ```
 
-The configuration is intentionally stored inside the repository so that it can be shared through Git.
-
-This means another developer does not need to manually configure the same editor settings.
+and apply the workspace configuration.
 
 ---
 
-# 7. Manually Apply the Configuration in VS Code
+# Manual Configuration in VS Code
 
-The repository contains `.vscode/settings.json`, but you can also apply the same configuration manually to your VS Code user settings.
+The repository provides `.vscode/settings.json`, but you can also configure the same setup manually in your personal VS Code settings.
 
-This is useful when:
-
-* You want the configuration to work across all VS Code projects.
-* You are setting up a new computer.
-* You are not using the repository as a workspace.
-* Another developer wants to copy the configuration into their personal VS Code settings.
+This is useful when you want the configuration to apply to **all projects**, not only this repository.
 
 ---
 
-## Open `settings.json`
+# Step 1 — Open `settings.json`
 
-In VS Code:
+Open Visual Studio Code.
 
-1. Open Visual Studio Code.
-2. Press:
+Press:
 
 ```text
 Ctrl + Shift + P
 ```
 
-3. Search for:
+Search for:
 
 ```text
 Preferences: Open User Settings (JSON)
 ```
 
-4. Select:
+Press **Enter**.
 
-```text
-Preferences: Open User Settings (JSON)
-```
-
-VS Code will open your `settings.json` file.
+VS Code will open your personal `settings.json` file.
 
 ---
 
-## Alternative Method
+# Alternative Method
 
 You can also:
 
 1. Open VS Code.
-2. Go to **File → Preferences → Settings**.
-3. Click the **Open Settings (JSON)** icon in the top-right corner.
+2. Open **File → Preferences → Settings**.
+3. Find the **Open Settings (JSON)** icon in the top-right corner.
+4. Click it.
 
-This opens the same `settings.json` file.
+This will open your `settings.json`.
 
 ---
 
-## Add the Configuration
+# Step 2 — Add the Configuration
 
-Inside your VS Code `settings.json`, add the following configuration:
+Add the following configuration to your `settings.json`:
 
 ```jsonc
 {
@@ -364,16 +580,28 @@ Inside your VS Code `settings.json`, add the following configuration:
     "editor.fontWeight": "400",
     "editor.fontLigatures": true,
 
-    // Makes comments and function parameters italic
+    // Makes selected syntax italic and bold
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
                 "scope": [
                     "comment",
+                    "entity.attribute.name",
+                    "entity.other.attribute-name",
+                    "entity.other.attribute-name.class",
+                    "entity.other.attribute-name.id",
+                    "entity.name.type.class",
+                    "keyword",
+                    "constant",
+                    "storage.modifier",
+                    "storage.type",
+                    "storage.type.function",
+                    "storage.type.class",
+                    "storage.type.class.js",
                     "variable.parameter"
                 ],
                 "settings": {
-                    "fontStyle": "italic"
+                    "fontStyle": "italic bold"
                 }
             },
             {
@@ -392,17 +620,21 @@ Inside your VS Code `settings.json`, add the following configuration:
         ]
     },
 
-    "workbench.colorTheme": "GitHub Dark Dimmed"
+    "workbench.colorTheme": "GitHub Dark Dimmed",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.productIconTheme": "fluent-icons"
 }
 ```
 
-### Important
+---
 
-If your existing `settings.json` already contains other settings, **do not delete them**.
+# Important: Existing `settings.json`
 
-Add or merge these settings into your existing configuration.
+If you already have other VS Code settings, do **not** delete your existing configuration.
 
-For example, if you already have:
+Merge the required properties into the existing `settings.json`.
+
+For example, if your current configuration is:
 
 ```json
 {
@@ -411,249 +643,41 @@ For example, if you already have:
 }
 ```
 
-do not replace the entire file.
+keep those settings and add the new configuration.
 
-Instead, update the relevant settings:
-
-```json
-{
-    "editor.fontSize": 16,
-    "git.enabled": true,
-    "editor.fontFamily": "'Victor Mono', Consolas, 'Courier New', monospace",
-    "editor.fontWeight": "400",
-    "editor.fontLigatures": true
-}
-```
-
-and add the `editor.tokenColorCustomizations` configuration.
-
----
-
-# 8. Font Configuration
-
-The primary font is configured using:
-
-```json
-"editor.fontFamily": "'Victor Mono', Consolas, 'Courier New', monospace"
-```
-
-The font priority is:
-
-```text
-1. Victor Mono
-2. Consolas
-3. Courier New
-4. monospace
-```
-
-If Victor Mono is installed, VS Code will use it.
-
-If Victor Mono is unavailable, VS Code will attempt to use the next available fallback font.
-
----
-
-# 9. Font Size
-
-The default font size is:
-
-```json
-"editor.fontSize": 16
-```
-
-This can be changed according to personal preference.
-
-For example:
-
-```json
-"editor.fontSize": 15
-```
-
-or:
-
-```json
-"editor.fontSize": 17
-```
-
-The repository uses `16` as the default because it provides a good balance between readability and the amount of code visible on screen.
-
----
-
-# 10. Font Weight
-
-The default font weight is:
-
-```json
-"editor.fontWeight": "400"
-```
-
-`400` represents regular font weight.
-
-This is intentional because the desired appearance uses italic/cursive styling for selected syntax rather than making the entire editor bold.
-
-Avoid using:
-
-```json
-"editor.fontWeight": "bold"
-```
-
-unless you specifically want all code to appear bold.
-
----
-
-# 11. Font Ligatures
-
-Font ligatures are enabled with:
-
-```json
-"editor.fontLigatures": true
-```
-
-This allows Victor Mono to use its programming ligature characters where supported.
-
-For example:
-
-```javascript
-const isValid = value >= 10 && value !== null;
-```
-
-The visual appearance of operators may be modified by the font's ligature support.
-
----
-
-# 12. Cursive / Italic Styling
-
-The italic styling is controlled using:
-
-```json
-"editor.tokenColorCustomizations"
-```
-
-and TextMate scopes.
-
-The configuration targets:
-
-```text
-comment
-variable.parameter
-```
-
-These scopes are assigned:
-
-```json
-"fontStyle": "italic"
-```
-
----
-
-## Comments
-
-The following scope targets comments:
-
-```text
-comment
-```
-
-Example:
-
-```javascript
-// Fetch user information from the server
-
-const user = await fetchUser();
-```
-
-The comment will use Victor Mono's italic variant.
-
----
-
-## Function Parameters
-
-The following scope targets function and method parameters:
-
-```text
-variable.parameter
-```
-
-Example:
-
-```javascript
-function getUser(userId) {
-    return userId;
-}
-```
-
-The `userId` parameter is configured to use italic styling.
-
----
-
-# 13. Preventing Unwanted Italic Styling
-
-Some syntax scopes are explicitly reset to regular styling:
-
-```text
-invalid
-keyword.operator
-constant.numeric.css
-keyword.other.unit.px.css
-constant.numeric.decimal.js
-constant.numeric.json
-```
-
-These scopes use:
-
-```json
-"fontStyle": ""
-```
-
-This prevents certain operators and numeric values from unnecessarily inheriting italic styling.
-
-For example:
-
-```javascript
-const age = 25;
-const isAdult = age >= 18;
-```
-
-The numeric values and operators should remain visually normal.
-
----
-
-# 14. Theme Configuration
-
-The workspace uses:
-
-```json
-"workbench.colorTheme": "GitHub Dark Dimmed"
-```
-
-This theme provides the dark editor appearance used with this configuration.
-
-If the theme is not available in your VS Code installation, you can install it through the VS Code Extensions panel or select another theme manually.
-
-Changing the theme will not affect the Victor Mono font configuration.
-
----
-
-# 15. Complete `.vscode/settings.json`
-
-The complete workspace configuration used by this repository is:
+You should end up with something like:
 
 ```jsonc
 {
-    "editor.fontFamily": "'Victor Mono', Consolas, 'Courier New', monospace",
     "editor.fontSize": 16,
+    "git.enabled": true,
+
+    "editor.fontFamily": "'Victor Mono', Consolas, 'Courier New', monospace",
     "editor.fontWeight": "400",
     "editor.fontLigatures": true,
 
-    // Makes comments and function parameters italic
+    // Makes selected syntax italic and bold
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
                 "scope": [
                     "comment",
+                    "entity.attribute.name",
+                    "entity.other.attribute-name",
+                    "entity.other.attribute-name.class",
+                    "entity.other.attribute-name.id",
+                    "entity.name.type.class",
+                    "keyword",
+                    "constant",
+                    "storage.modifier",
+                    "storage.type",
+                    "storage.type.function",
+                    "storage.type.class",
+                    "storage.type.class.js",
                     "variable.parameter"
                 ],
                 "settings": {
-                    "fontStyle": "italic"
+                    "fontStyle": "italic bold"
                 }
             },
             {
@@ -672,55 +696,118 @@ The complete workspace configuration used by this repository is:
         ]
     },
 
-    "workbench.colorTheme": "GitHub Dark Dimmed"
+    "workbench.colorTheme": "GitHub Dark Dimmed",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.productIconTheme": "fluent-icons"
 }
 ```
 
 ---
 
-# 16. Verify the Configuration
+# Complete Workspace Configuration
 
-After installing Victor Mono and opening the repository, create or open a JavaScript or TypeScript file.
+The repository's `.vscode/settings.json` should contain:
 
-Add the following:
+```jsonc
+{
+    "editor.fontFamily": "'Victor Mono', Consolas, 'Courier New', monospace",
+    "editor.fontSize": 16,
+    "editor.fontWeight": "400",
+    "editor.fontLigatures": true,
+
+    // Makes selected syntax italic and bold
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": [
+                    "comment",
+                    "entity.attribute.name",
+                    "entity.other.attribute-name",
+                    "entity.other.attribute-name.class",
+                    "entity.other.attribute-name.id",
+                    "entity.name.type.class",
+                    "keyword",
+                    "constant",
+                    "storage.modifier",
+                    "storage.type",
+                    "storage.type.function",
+                    "storage.type.class",
+                    "storage.type.class.js",
+                    "variable.parameter"
+                ],
+                "settings": {
+                    "fontStyle": "italic bold"
+                }
+            },
+            {
+                "scope": [
+                    "invalid",
+                    "keyword.operator",
+                    "constant.numeric.css",
+                    "keyword.other.unit.px.css",
+                    "constant.numeric.decimal.js",
+                    "constant.numeric.json"
+                ],
+                "settings": {
+                    "fontStyle": ""
+                }
+            }
+        ]
+    },
+
+    "workbench.colorTheme": "GitHub Dark Dimmed",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.productIconTheme": "fluent-icons"
+}
+```
+
+---
+
+# Verify the Setup
+
+Create or open a JavaScript or TypeScript file and add:
 
 ```javascript
 // This comment should appear italic/cursive
 
-function getUser(userId) {
-    const user = {
-        id: userId,
-        name: "John",
-        age: 25
-    };
+async function getUser(userId) {
+    const response = await fetch(
+        `https://example.com/users/${userId}`
+    );
 
-    return user;
+    if (!response.ok) {
+        throw new Error("Failed to fetch user");
+    }
+
+    return response.json();
 }
 ```
 
-The expected appearance is:
+Check the following:
 
 ```text
-Comments            → Italic / cursive
-Function parameters → Italic / cursive
-Normal code         → Regular
-Numbers             → Regular
-Operators           → Regular
-Font                → Victor Mono
-Theme               → GitHub Dark Dimmed
+Font                   → Victor Mono
+Comments               → Italic / bold
+Function parameters    → Italic / bold
+Keywords               → Italic / bold
+Class names            → Italic / bold
+Operators              → Regular
+Numbers                → Regular
+Font ligatures         → Enabled
+Color theme            → GitHub Dark Dimmed
+File icons             → Material Icon Theme
+Product icons          → Fluent Icons
 ```
 
 ---
 
-# 17. Troubleshooting
+# Troubleshooting
 
 ## Victor Mono Is Not Being Applied
 
-If the editor is not using Victor Mono, follow these steps.
+If the editor is not using Victor Mono:
 
-### Step 1 — Confirm the Font Is Installed
-
-Make sure Victor Mono is installed correctly on your computer.
+### Step 1 — Confirm Victor Mono Is Installed
 
 On Windows:
 
@@ -734,11 +821,11 @@ Search for:
 Victor Mono
 ```
 
-If Victor Mono appears in the installed fonts list, the font is installed.
-
-If it does not appear, download and install it again from:
+If it is not listed, download it from:
 
 https://rubjo.github.io/victor-mono/
+
+and install it again.
 
 ---
 
@@ -752,7 +839,7 @@ Make sure VS Code is completely closed before continuing.
 
 ### Step 3 — Open VS Code Again
 
-Open Visual Studio Code normally.
+Launch Visual Studio Code again.
 
 ---
 
@@ -764,7 +851,7 @@ Open the Command Palette:
 Ctrl + Shift + P
 ```
 
-Search for:
+Search:
 
 ```text
 Developer: Reload Window
@@ -774,9 +861,9 @@ Press **Enter**.
 
 ---
 
-### Step 5 — Check `settings.json`
+### Step 5 — Open `settings.json`
 
-Open your VS Code `settings.json`:
+Open:
 
 ```text
 Ctrl + Shift + P
@@ -790,7 +877,7 @@ Preferences: Open User Settings (JSON)
 
 Press **Enter**.
 
-Confirm that your configuration contains:
+Confirm that you have:
 
 ```json
 "editor.fontFamily": "'Victor Mono', Consolas, 'Courier New', monospace"
@@ -810,7 +897,7 @@ and:
 
 ---
 
-### Step 6 — Check the Font Family in VS Code Settings
+### Step 6 — Check Font Family
 
 Open:
 
@@ -832,45 +919,112 @@ Confirm that it contains:
 
 ---
 
-## Cursive Comments Are Not Working
+# GitHub Dark Dimmed Is Not Working
 
-If Victor Mono is working but comments are not italic:
+Make sure the **GitHub Theme** extension is installed.
 
-1. Open `.vscode/settings.json` or your User `settings.json`.
-2. Confirm that `editor.tokenColorCustomizations` exists.
-3. Confirm that the comment scope is:
+Then confirm your configuration contains:
+
+```json
+"workbench.colorTheme": "GitHub Dark Dimmed"
+```
+
+Open the Command Palette:
 
 ```text
-comment
+Ctrl + Shift + P
 ```
 
-4. Confirm that the style is:
+Search:
 
-```json
-"fontStyle": "italic"
+```text
+Preferences: Color Theme
 ```
 
-The relevant configuration is:
+Select:
 
-```json
-{
-    "scope": [
-        "comment",
-        "variable.parameter"
-    ],
-    "settings": {
-        "fontStyle": "italic"
-    }
-}
+```text
+GitHub Dark Dimmed
 ```
 
-Reload VS Code after making changes.
+The GitHub Theme extension provides the GitHub Dark Dimmed theme.
 
 ---
 
-# 18. Code Is Completely Bold
+# Material Icons Are Not Working
 
-If all your code appears bold, check that you have:
+Make sure the **Material Icon Theme** extension is installed.
+
+Confirm:
+
+```json
+"workbench.iconTheme": "material-icon-theme"
+```
+
+You can also activate it manually:
+
+```text
+Ctrl + Shift + P
+```
+
+Search:
+
+```text
+Material Icons: Activate Icon Theme
+```
+
+Then select **Material Icon Theme**.
+
+---
+
+# Fluent Icons Are Not Working
+
+Make sure the **Fluent Icons** extension is installed.
+
+Confirm:
+
+```json
+"workbench.productIconTheme": "fluent-icons"
+```
+
+Then reload VS Code:
+
+```text
+Ctrl + Shift + P
+→ Developer: Reload Window
+```
+
+The Fluent Icons extension uses the product icon theme identifier:
+
+```text
+fluent-icons
+```
+
+and is published as `miguelsolorio.fluent-icons`.
+
+---
+
+# Cursive Styling Is Not Working
+
+If Victor Mono is working but the italic styling is not:
+
+1. Open `.vscode/settings.json`.
+2. Check `editor.tokenColorCustomizations`.
+3. Confirm the `textMateRules` are present.
+4. Confirm the desired scopes are included.
+5. Confirm:
+
+```json
+"fontStyle": "italic bold"
+```
+
+Reload VS Code after changing the settings.
+
+---
+
+# Code Is Completely Bold
+
+If everything appears bold, make sure the editor configuration contains:
 
 ```json
 "editor.fontWeight": "400"
@@ -882,17 +1036,19 @@ Do not use:
 "editor.fontWeight": "bold"
 ```
 
-The `400` setting keeps normal code at regular weight.
+The individual syntax scopes are responsible for the italic/bold appearance.
 
 ---
 
-# 19. New Computer Setup
+# Setting Up on a New Computer
 
-This repository is specifically designed to make setup easy when moving to a new computer.
+Use the following process whenever moving to another computer.
 
-Follow these steps:
+## 1. Install VS Code
 
-### Step 1 — Install Git
+Install Visual Studio Code.
+
+## 2. Install Git
 
 Verify:
 
@@ -900,70 +1056,75 @@ Verify:
 git --version
 ```
 
-### Step 2 — Install VS Code
+## 3. Install Victor Mono
 
-Install Visual Studio Code.
-
-### Step 3 — Download and Install Victor Mono
-
-Use the official Victor Mono website:
+Download from:
 
 https://rubjo.github.io/victor-mono/
 
-Install the font on the operating system.
+Install the font.
 
-### Step 4 — Clone the Repository
+## 4. Install VS Code Extensions
+
+Install:
+
+```text
+GitHub Theme
+Material Icon Theme
+Fluent Icons
+```
+
+## 5. Clone the Repository
 
 ```bash
 git clone <YOUR_GITHUB_REPOSITORY_URL>
 ```
 
-### Step 5 — Open the Project
+## 6. Open the Repository
 
 ```bash
 cd vscode-cursive-font
 code .
 ```
 
-### Step 6 — Reload VS Code If Necessary
+## 7. Reload VS Code
 
-Open:
+If necessary:
 
 ```text
 Ctrl + Shift + P
+→ Developer: Reload Window
 ```
 
-and run:
+## 8. Verify
+
+Confirm:
 
 ```text
-Developer: Reload Window
+Victor Mono             → Working
+Cursive syntax          → Working
+GitHub Dark Dimmed      → Applied
+Material icons          → Applied
+Fluent product icons    → Applied
+Font ligatures          → Enabled
 ```
-
-### Step 7 — Verify
-
-Open a JavaScript or TypeScript file and confirm:
-
-* Victor Mono is being used.
-* Comments appear italic/cursive.
-* Function parameters appear italic.
-* Normal code remains regular.
-* Font ligatures are enabled.
-* GitHub Dark Dimmed is applied.
 
 ---
 
-# 20. Setup for Another Developer
+# Setup for Another Developer
 
-Another developer can use this repository without manually recreating the complete configuration.
+Another developer can reproduce the same environment by following:
 
-They need to:
-
-1. Install VS Code.
-2. Install Git.
-3. Download Victor Mono.
-4. Install Victor Mono.
-5. Clone this repository.
-6. Open the repository in VS Code.
+```text
+1. Install VS Code
+2. Install Git
+3. Download and install Victor Mono
+4. Install GitHub Theme
+5. Install Material Icon Theme
+6. Install Fluent Icons
+7. Clone this repository
+8. Open the repository in VS Code
+```
 
 Commands:
 
@@ -973,17 +1134,15 @@ cd vscode-cursive-font
 code .
 ```
 
-The workspace configuration will automatically be loaded from:
+The workspace configuration will automatically load from:
 
 ```text
 .vscode/settings.json
 ```
 
-If the developer wants the configuration to apply to **all VS Code projects**, they can also copy the same configuration into their User `settings.json`.
-
 ---
 
-# 21. Workspace Settings vs User Settings
+# Workspace Settings vs User Settings
 
 This repository uses:
 
@@ -991,13 +1150,11 @@ This repository uses:
 .vscode/settings.json
 ```
 
-These are **workspace settings**.
+These are workspace settings.
 
-They apply when this specific repository is opened in VS Code.
+They apply when this repository is opened.
 
-### Workspace Settings
-
-Stored inside the project:
+## Workspace Settings
 
 ```text
 project/
@@ -1005,19 +1162,20 @@ project/
     └── settings.json
 ```
 
-### User Settings
+## User Settings
 
-Stored in the developer's global VS Code configuration.
+These are the developer's global VS Code settings and apply across projects.
 
-These settings apply across all projects.
+You can use either approach:
 
-The repository does not require developers to replace their complete global `settings.json`.
+* Use the repository's `.vscode/settings.json` for project-specific configuration.
+* Copy the configuration into User `settings.json` if you want the appearance across all projects.
 
 ---
 
-# 22. Why the Font Is Not Stored in Git
+# Why the Font Is Not Stored in Git
 
-Victor Mono is intentionally not included in this repository.
+Victor Mono is intentionally not included in the repository.
 
 The repository stores:
 
@@ -1025,50 +1183,62 @@ The repository stores:
 VS Code configuration
 ```
 
-while the operating system stores:
+The operating system stores:
 
 ```text
 Victor Mono font
 ```
 
-The setup works like this:
+The setup therefore works like this:
 
 ```text
 GitHub Repository
         │
         ├── .vscode/settings.json
-        │       ├── Font Family
-        │       ├── Font Size
-        │       ├── Font Weight
-        │       ├── Font Ligatures
-        │       ├── Italic Comments
-        │       └── Italic Parameters
+        │       ├── Font
+        │       ├── Font Styling
+        │       ├── Ligatures
+        │       ├── Color Theme
+        │       ├── File Icon Theme
+        │       └── Product Icon Theme
         │
         └── README.md
                 └── Installation Instructions
 
 Developer Computer
         │
-        └── Victor Mono Font
+        ├── Victor Mono
+        ├── GitHub Theme
+        ├── Material Icon Theme
+        └── Fluent Icons
 ```
 
-This keeps the repository lightweight and focused on configuration.
+This keeps the repository lightweight and focused on the editor configuration.
 
 ---
 
-# 23. Git Configuration
+# Git Configuration
 
-The `.gitignore` file excludes temporary and unnecessary files such as:
+The `.gitignore` file excludes unnecessary operating-system and temporary files.
+
+Examples:
 
 ```text
 .DS_Store
 Thumbs.db
+Desktop.ini
 *.log
 *.tmp
+*.temp
 *.bak
+*.swp
 ```
 
-However, `.vscode/settings.json` remains tracked.
+The following must **not** be ignored:
+
+```text
+.vscode/settings.json
+```
 
 Do not add:
 
@@ -1078,43 +1248,45 @@ Do not add:
 
 to `.gitignore`.
 
-The `.vscode/settings.json` file is required for the workspace configuration.
+The workspace configuration needs to remain tracked by Git.
 
 ---
 
-# 24. Updating the Configuration
+# Updating the Configuration
 
-If you change the VS Code configuration in the future, check the changes:
+When you modify the VS Code configuration:
+
+Check the status:
 
 ```bash
 git status
 ```
 
-Review the differences:
+Review changes:
 
 ```bash
 git diff
 ```
 
-Add the configuration:
+Stage the settings:
 
 ```bash
 git add .vscode/settings.json
 ```
 
-Create a commit:
+Commit:
 
 ```bash
 git commit -m "Update VS Code editor configuration"
 ```
 
-Push the changes:
+Push:
 
 ```bash
 git push
 ```
 
-Other developers can update their local configuration:
+Other developers can receive the updated configuration using:
 
 ```bash
 git pull
@@ -1122,28 +1294,26 @@ git pull
 
 ---
 
-# 25. Recommended Customizations
+# Recommended Customizations
 
-You can customize the configuration according to your preference.
-
-### Change Font Size
+## Change Font Size
 
 ```json
 "editor.fontSize": 17
 ```
 
-### Disable Ligatures
+## Disable Ligatures
 
 ```json
 "editor.fontLigatures": false
 ```
 
-### Disable Italic Comments and Parameters
+## Disable Italic Styling
 
 Change:
 
 ```json
-"fontStyle": "italic"
+"fontStyle": "italic bold"
 ```
 
 to:
@@ -1152,59 +1322,80 @@ to:
 "fontStyle": ""
 ```
 
-### Make Italic Styling Bold
+## Use Italic Without Bold
+
+Change:
 
 ```json
 "fontStyle": "italic bold"
 ```
 
-For the intended clean appearance, use:
+to:
 
 ```json
 "fontStyle": "italic"
 ```
 
----
+## Change Color Theme
 
-# 26. Recommended Default Configuration
+Replace:
 
-| Setting             | Value              |
-| ------------------- | ------------------ |
-| Font                | Victor Mono        |
-| Font Size           | 16                 |
-| Font Weight         | 400                |
-| Font Ligatures      | Enabled            |
-| Comments            | Italic             |
-| Function Parameters | Italic             |
-| Theme               | GitHub Dark Dimmed |
-| Configuration Type  | Workspace          |
+```json
+"workbench.colorTheme": "GitHub Dark Dimmed"
+```
+
+with the name of another installed VS Code theme.
 
 ---
 
-# 27. Quick Setup
+# Recommended Configuration
+
+| Setting            | Value               |
+| ------------------ | ------------------- |
+| Font               | Victor Mono         |
+| Font Size          | 16                  |
+| Font Weight        | 400                 |
+| Font Ligatures     | Enabled             |
+| Selected Syntax    | Italic + Bold       |
+| Operators          | Regular             |
+| Numbers            | Regular             |
+| Color Theme        | GitHub Dark Dimmed  |
+| File Icon Theme    | Material Icon Theme |
+| Product Icon Theme | Fluent Icons        |
+| Configuration      | Workspace           |
+
+---
+
+# Quick Setup
 
 For an experienced developer:
 
 ### 1. Install Victor Mono
 
-Download from:
-
 https://rubjo.github.io/victor-mono/
 
-### 2. Clone the repository
+### 2. Install Extensions
+
+```text
+GitHub Theme
+Material Icon Theme
+Fluent Icons
+```
+
+### 3. Clone the repository
 
 ```bash
 git clone <YOUR_GITHUB_REPOSITORY_URL>
 ```
 
-### 3. Open the project
+### 4. Open the project
 
 ```bash
 cd vscode-cursive-font
 code .
 ```
 
-### 4. Reload VS Code if required
+### 5. Reload VS Code if necessary
 
 ```text
 Ctrl + Shift + P
@@ -1213,16 +1404,24 @@ Ctrl + Shift + P
 
 ---
 
-# 28. Repository Maintenance
+# Repository Maintenance
 
-Keep this repository focused on VS Code editor configuration.
+Keep the repository focused on the VS Code configuration.
 
-Recommended files:
+Recommended structure:
 
 ```text
-.vscode/settings.json
-README.md
-.gitignore
+vscode-cursive-font/
+│
+├── .vscode/
+│   └── settings.json
+│
+├── assets/
+│   └── vscode-cursive-font-demo.png
+│
+├── README.md
+│
+└── .gitignore
 ```
 
 Avoid committing:
@@ -1243,14 +1442,17 @@ This keeps the repository clean, reusable, and easy for other developers to unde
 
 # License
 
-This repository contains VS Code configuration and documentation.
+This repository contains VS Code configuration, documentation, and demonstration assets.
 
 Victor Mono is not included in this repository.
 
 Victor Mono remains subject to its own license and distribution terms. Please follow the official Victor Mono project's licensing and distribution requirements when downloading and installing the font.
 
+The referenced VS Code extensions and themes remain subject to their respective licenses and publisher terms.
+
 ---
 
-## Author
+# Author
 
-Maintained as a reusable VS Code developer setup for a clean cursive coding experience.
+Maintained as a reusable VS Code developer setup for a clean, modern, and cursive coding experience.
+
